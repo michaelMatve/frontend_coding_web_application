@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Editor } from '@monaco-editor/react';
-
+//Class definition for the StudentCodeBlock component.
 class StudentCodeBlock extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +18,7 @@ class StudentCodeBlock extends Component {
         this.fetchCodeList();
         this.setupSocket();
     }
-
+    //Asynchronous function to fetch code block details from the server.
     fetchCodeList = async () => {
         try {
             const response = await fetch(`https://backendcodingwebapplication-production.up.railway.app/get_code_block/${this.state.id}`);
@@ -32,7 +32,7 @@ class StudentCodeBlock extends Component {
             console.error('Error fetching code list:', error);
         }
     };
-
+    // Function to set up the socket and handle 'updateCodeBody' events.
     setupSocket = () => {
         const { socket } = this.props;
         console.log("try1");
@@ -47,16 +47,18 @@ class StudentCodeBlock extends Component {
             }
         });
     };
-
+    // Function to handle changes in the code body and emit socket events.
     handleBodyChange = (newCode) => {
         const { solution } = this.state;
         const { socket } = this.props;
-
+        // Updating the component state with the new code and signaling an update.
+        // isSendingUpdate is set true to not update himself
         this.setState({ code: newCode, isSendingUpdate: true });
 
         if (socket) {
             socket.emit('updateCodeBody', { id: this.state.id, newCode });
         }
+        // Checking if the new code matches the solution and displaying an alert.
         if (newCode === solution) {
             window.alert('Good job! Your solution is correct.');
         }
