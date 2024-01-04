@@ -10,7 +10,9 @@ class MentorCodeBlock extends Component {
             "id": props.id,
             "title": '',
             "code": '',
-            "isMentor": props.isMentor
+            "solution": "",
+            "isMentor": props.isMentor,
+            
         };
     }
 
@@ -26,8 +28,8 @@ class MentorCodeBlock extends Component {
                 throw new Error('Network response was not ok');
             }
 
-            const { title, code } = await response.json();
-            this.setState({ title, code });
+            const { title, code, solution } = await response.json();
+            this.setState({ title, code, solution});
         } catch (error) {
             console.error('Error fetching code list:', error);
         }
@@ -40,6 +42,9 @@ class MentorCodeBlock extends Component {
         socket.on('updateCodeBody', (data) => {
             if (data.id === this.state.id) {
                 this.setState({ code: data.newCode });
+            }
+            if (data.newCode == this.state.solution) {
+                window.alert('Good job! Your solution is correct.');
             }
         });
     };

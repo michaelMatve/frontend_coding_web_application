@@ -8,7 +8,9 @@ class StudentCodeBlock extends Component {
             "id": props.id,
             "title": '',
             "code": '',
-            "isMentor" : props.isMentor
+            "solution": "",
+            "isMentor" : props.isMentor,
+            "isSendingUpdate": false
         };
     }
 
@@ -24,8 +26,8 @@ class StudentCodeBlock extends Component {
                 throw new Error('Network response was not ok');
             }
 
-            const { title, code } = await response.json();
-            this.setState({ title, code });
+            const { title, code,solution } = await response.json();
+            this.setState({ title, code,solution });
         } catch (error) {
             console.error('Error fetching code list:', error);
         }
@@ -37,18 +39,26 @@ class StudentCodeBlock extends Component {
         console.log("try2");
         socket.on('updateCodeBody', (data) => {
             if (data.id === this.state.id) {
-                this.setState({ code: data.newCode });
+                if (!this.state.isSendingUpdate) {
+                    console.log("updated");
+                    this.setState({ code: data.newCode });
+                }
+                this.setState({ isSendingUpdate: false })
             }
         });
     };
 
     handleBodyChange = (newCode) => {
+        const { solution } = this.state;
         const { socket } = this.props;
 
-        this.setState({ code: newCode });
+        this.setState({ code: newCode, isSendingUpdate: true });
 
         if (socket) {
             socket.emit('updateCodeBody', { id: this.state.id, newCode });
+        }
+        if (newCode == solution) {
+            window.alert('Good job! Your solution is correct.');
         }
     };
 
