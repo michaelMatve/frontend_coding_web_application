@@ -42,7 +42,7 @@ class MentorCodeBlock extends Component {
             if (data.id === this.state.id) {
                 this.setState({ code: data.newCode });
             }
-            if (data.newCode == this.state.solution) {
+            if (data.newCode === this.state.solution) {
                 window.alert('Good job! Your solution is correct.');
             }
         });

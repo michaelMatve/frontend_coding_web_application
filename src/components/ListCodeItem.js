@@ -1,6 +1,6 @@
 import React,{ Component } from "react";
 /*
-This class represents a code and displays it as a list object (li).
+This Component represents a code item and displays it as a list object (li).
 */
 class ListCodeItem extends Component{
     constructor(props){

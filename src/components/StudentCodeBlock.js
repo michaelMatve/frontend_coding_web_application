@@ -57,7 +57,7 @@ class StudentCodeBlock extends Component {
         if (socket) {
             socket.emit('updateCodeBody', { id: this.state.id, newCode });
         }
-        if (newCode == solution) {
+        if (newCode === solution) {
             window.alert('Good job! Your solution is correct.');
         }
     };

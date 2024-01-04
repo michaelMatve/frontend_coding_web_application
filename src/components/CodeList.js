@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import ListCodeItem from "./ListCodeItem";
+/*
+  this Component re
+*/
 class CodeList extends Component {
   constructor(props) {
     super(props);
