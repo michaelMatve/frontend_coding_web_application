@@ -14,16 +14,21 @@ class CodeList extends Component {
     this.fetchCodeList();
   }
 
-  fetchCodeList = async () => {
+ fetchCodeList = async () => {
     try {
-      const response = await axios.get('http://backend_coding_web_application.railway.internal:3002/getCodeList');
-      const { codesList } = response.data;
-      console.log('Received itemList:', codesList);
-      this.setState({ codesList });
+        const response = await fetch('http://backendcodingwebapplication-production.up.railway.app:3002/getCodeList');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const { codesList } = await response.json();
+        console.log('Received itemList:', codesList);
+        this.setState({ codesList });
     } catch (error) {
-      console.error('Error fetching code list:', error);
+        console.error('Error fetching code list:', error);
     }
-  };
+};
+
 
   // fetchCodeList = async () => {
   //   try {
@@ -42,11 +47,6 @@ class CodeList extends Component {
   
   render() {
     const { codesList } = this.state;
-  
-    // Check if codesList is null or undefined
-    if (codesList === null || codesList === undefined || codesList.length === 0) {
-      return null; // Don't render anything if codesList is not available or is empty
-    }
   
     return (
       <div>
