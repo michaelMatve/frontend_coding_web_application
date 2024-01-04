@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 import ListCodeItem from "./ListCodeItem";
 class CodeList extends Component {
   constructor(props) {
@@ -14,37 +14,22 @@ class CodeList extends Component {
     this.fetchCodeList();
   }
 
- fetchCodeList = async () => {
+  fetchCodeList = async () => {
     try {
-        const response = await fetch('https://backendcodingwebapplication-production.up.railway.app/getCodeList');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const { codesList } = await response.json();
-        console.log('Received itemList:', codesList);
-        this.setState({ codesList });
+      const response = await fetch('https://backendcodingwebapplication-production.up.railway.app:3002/getCodeList');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const { codesList } = await response.json();
+      console.log('Received itemList:', codesList);
+      this.setState({ codesList });
     } catch (error) {
-        console.error('Error fetching code list:', error);
+      console.error('Error fetching code list:', error);
     }
-};
+  };
 
 
-  // fetchCodeList = async () => {
-  //   try {
-  //     const response = await fetch('http://backendcodingwebapplication-production.up.railway.app:3002/getCodeList');
-  //     if (!response.ok) {
-  //       throw new Error('Network response was not ok');
-  //     }
-  
-  //     const { codesList } = await response.json();
-  //     console.log('Received itemList:', codesList);
-  //     this.setState({ codesList });
-  //   } catch (error) {
-  //     console.error('Error fetching code list:', error);
-  //   }
-  // };
-  
   render() {
     const { codesList } = this.state;
   
