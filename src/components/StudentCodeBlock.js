@@ -53,7 +53,7 @@ class StudentCodeBlock extends Component {
     };
 
     render() {
-        const { id, title, code,isMentor } = this.state;
+        const { title, code,isMentor } = this.state;
         return (
             <div>
                 {isMentor === 1 ? (
