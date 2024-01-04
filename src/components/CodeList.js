@@ -15,7 +15,7 @@ class CodeList extends Component {
 
   fetchCodeList = async () => {
     try {
-      const response = await fetch('http://backend_coding_web_application.railway.internal/getCodeList');
+      const response = await fetch('http://backend_coding_web_application.railway.internal:3002/getCodeList');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
