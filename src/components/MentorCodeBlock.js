@@ -37,8 +37,8 @@ class MentorCodeBlock extends Component {
     // Function to set up the socket and handle 'updateCodeBody' events.
     setupSocket = () => {
         const { socket } = this.props;
-        console.log("try1");
-        console.log("try2");
+        // console.log("try1");
+        // console.log("try2");
         socket.on('updateCodeBody', (data) => {
             if (data.id === this.state.id) {
                 this.setState({ code: data.newCode });

@@ -35,7 +35,6 @@ class CodeList extends Component {
     const { codesList } = this.state;
     return (
       <div>
-        <h1>od bdika</h1>
         <ul>
           {codesList.map((code) => (
             <ListCodeItem key={code._id} id={code._id} title= {code.title} />
