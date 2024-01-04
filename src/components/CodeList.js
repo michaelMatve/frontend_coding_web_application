@@ -15,7 +15,7 @@ class CodeList extends Component {
 
   fetchCodeList = async () => {
     try {
-      const response = await fetch('http://backendcodingwebapplication-production.up.railway.app/getCodeList');
+      const response = await fetch('http://backendcodingwebapplication-production.up.railway.app:3002/getCodeList');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -32,6 +32,8 @@ class CodeList extends Component {
     const { codesList } = this.state;
     return (
       <div>
+        <h1>od bdika</h1>
+        <h2>{codesList}</h2>
         <ul>
           {codesList.map((code) => (
             <ListCodeItem key={code._id} id={code._id} title= {code.title} />
