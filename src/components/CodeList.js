@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import ListCodeItem from "./ListCodeItem";
 class CodeList extends Component {
   constructor(props) {
@@ -16,26 +15,27 @@ class CodeList extends Component {
 
   fetchCodeList = async () => {
     try {
-      const response = await axios.get('https://backendcodingwebapplication-production.up.railway.app/getCodeList');
-      const { codesList } = response.data;
+      const response = await fetch('https://backendcodingwebapplication-production.up.railway.app/getCodeList');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const { codesList } = await response.json();
       console.log('Received itemList:', codesList);
       this.setState({ codesList });
     } catch (error) {
-      console.error('Error fetching code list:', error.message);
+      console.error('Error fetching code list:', error);
     }
   };
-
-
+  
   render() {
     const { codesList } = this.state;
-  
     return (
       <div>
         <h1>od bdika</h1>
-        <h2>{codesList}</h2>
         <ul>
           {codesList.map((code) => (
-            <ListCodeItem key={code._id} id={code._id} title={code.title} />
+            <ListCodeItem key={code._id} id={code._id} title= {code.title} />
           ))}
         </ul>
       </div>
