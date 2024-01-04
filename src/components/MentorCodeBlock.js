@@ -11,8 +11,7 @@ class MentorCodeBlock extends Component {
             "title": '',
             "code": '',
             "solution": "",
-            "isMentor": props.isMentor,
-            
+            "isMentor": props.isMentor
         };
     }
 
