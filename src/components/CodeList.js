@@ -16,7 +16,7 @@ class CodeList extends Component {
 
   fetchCodeList = async () => {
     try {
-      const response = await axios.get('http://backendcodingwebapplication-production.up.railway.app:3002/getCodeList');
+      const response = await axios.get('http://backend_coding_web_application.railway.internal:3002/getCodeList');
       const { codesList } = response.data;
       console.log('Received itemList:', codesList);
       this.setState({ codesList });
