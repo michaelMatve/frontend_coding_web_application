@@ -19,7 +19,7 @@ class StudentCodeBlock extends Component {
 
     fetchCodeList = async () => {
         try {
-            const response = await fetch(`http://backend_coding_web_application.railway.internal/get_code_block/${this.state.id}`);
+            const response = await fetch(`https://backendcodingwebapplication-production.up.railway.app/get_code_block/${this.state.id}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

@@ -14,7 +14,7 @@ const CodePage = () => {
     useEffect(() => {
         
         // Fetch the isMentor value from the server
-        fetch(`http://backend_coding_web_application.railway.internal/Mentor_id/${id}`)
+        fetch(`https://backendcodingwebapplication-production.up.railway.app/Mentor_id/${id}`)
             .then(response => response.json())
             .then(data => {
                 setIsMentor(data.isMentor);
@@ -23,7 +23,7 @@ const CodePage = () => {
                 console.error('Error fetching isMentor:', error);
             });
         
-        const socket = io('http://backend_coding_web_application.railway.internal', {
+        const socket = io('https://backendcodingwebapplication-production.up.railway.app', {
             query: { codeId: id , isMentor : null},
         });
         setSocket(socket);
